@@ -29,3 +29,7 @@ Route::get('/distrito/{distrito}', function(Request $request, $distrito) {
     return response()->json( $puntosWifi );
 });
 
+Route::get('/barrio/{barrio}', function(Request $request, $barrio) {
+	$puntosWifi = Wifi::select("codigocapa","capagenerica","nombrecapa","equipamiento","nombredistricto","nombrebarrio","direccion")->where('nombrebarrio','like','%'.$barrio."%")->get();
+	return response()->json( $puntosWifi );
+});
